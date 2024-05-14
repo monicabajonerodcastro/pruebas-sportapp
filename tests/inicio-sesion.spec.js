@@ -1,10 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
-// const _URL = "http://localhost:4200/"
-const _URL = "https://web-5dvgbemkya-uc.a.run.app/"
-
 test.beforeEach(async ({ page }) => {
-  await page.goto(_URL);
+  await page.goto("/");
 });
 
 test.describe('Iniciar sesión', () => {
@@ -17,7 +14,7 @@ test.describe('Iniciar sesión', () => {
     await page.getByRole('button', {name: 'ingresar'}).click()
 
     // Verificar el inicio de sesión exitosamente
-    await expect(page).toHaveURL(_URL+"socios")
+    await expect(page).toHaveURL("/socios")
   })
 });
 
@@ -57,7 +54,7 @@ test.describe('Crear cuenta', () => {
     await page.getByTestId('crear-cuenta').click()
 
     // Verificar el inicio de sesión exitosamente
-    await expect(page).toHaveURL(_URL+"registro")
+    await expect(page).toHaveURL("/registro")
   })
 });
 
