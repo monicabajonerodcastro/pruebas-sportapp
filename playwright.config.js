@@ -29,6 +29,7 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    baseURL: process.env.ENV === 'DEV' ? 'http://localhost:4200' : "https://web-5dvgbemkya-uc.a.run.app"
   },
 
   /* Configure projects for major browsers */
