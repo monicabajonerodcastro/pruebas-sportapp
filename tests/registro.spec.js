@@ -1,9 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
-//const _URL = "http://localhost:4200"
-const _URL = "https://web-5dvgbemkya-uc.a.run.app"
-const _URL_REGISTRO = _URL+"/registro"
-const _URL_PERFIL_DEPORTIVO = _URL+"/perfil-deportista"
+const _URL_REGISTRO = "/registro"
+const _URL_PERFIL_DEPORTIVO = "/perfil-deportista"
 
 test.beforeEach(async ({ page }) => {
   await page.goto(_URL_REGISTRO);
@@ -57,7 +55,7 @@ test.describe('Registrar', () => {
     await page.getByPlaceholder("Plan Nutricional", {exact: true}).fill("Ninguno");
     await page.getByPlaceholder("Historia Clinica", {exact: true}).fill("No tiene");
 
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(1000);
     await page.getByTestId('ciudadNacimiento').selectOption({ value: 'AA' });
     await page.getByTestId('ciudadResidencia').selectOption({ value: 'AA' });
 
@@ -75,7 +73,6 @@ test.describe('Registrar', () => {
     await page.getByPlaceholder("Número de identificación", {exact: true}).fill("1072660");
 
     await page.getByPlaceholder("Direccion", {exact: true}).fill("mapa");
-    //await page.waitForTimeout(3000);
     await page.getByTestId("direccion-1").click();
 
     await page.getByPlaceholder("Contraseña", {exact: true}).fill("123456");
@@ -83,6 +80,7 @@ test.describe('Registrar', () => {
 
     await page.getByTestId('suscripcion').selectOption({ label: 'Plan Básico' });
 
+    // Enviar datos de registro
     await page.getByRole('button', {name: ' Crear cuenta '}).click()
     await expect(page.getByTestId('exitoRegistro')).toBeVisible();
   })
